@@ -13,8 +13,8 @@
 
 
     <parent>
-        <artifactId>onecard-rutine-service</artifactId>
         <groupId>com.onecard</groupId>
+        <artifactId>onecard-rutine-service</artifactId>
         <version>1.0.0</version>
     </parent>
 

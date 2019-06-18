@@ -10,6 +10,8 @@
         <option value="$PROJECT_DIR$/rutine-date-service/pom.xml" />
         <option value="$PROJECT_DIR$/rutine-tools-service/pom.xml" />
         <option value="$PROJECT_DIR$/rutine-base-service/pom.xml" />
+        <option value="$PROJECT_DIR$/rutine-mybatis-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../JCSprout/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
