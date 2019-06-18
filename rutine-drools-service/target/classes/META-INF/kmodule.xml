@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
+    <kbase name="test" packages="drools">
+        <ksession name="drools-test"/>
+    </kbase>
+    <kbase name="stateTest" packages="drools">
+        <ksession name="drools-stateTest"/>
+    </kbase>
+</kmodule>

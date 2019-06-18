@@ -1,0 +1,15 @@
+package drools;
+
+import com.onecard.fact.CustomerFact;
+
+//function void print(String args) {
+//    System.out.println(args);
+//}
+
+query "testQuery"
+    customer:CustomerFact(age<30);
+end
+
+query "testQuery1"(int $age,String $gender)
+    customer:CustomerFact(age>$age)
+end

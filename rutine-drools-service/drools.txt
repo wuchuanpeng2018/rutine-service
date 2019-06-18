@@ -1,0 +1,97 @@
+//drools drl文件里面的构成语法
+package com;
+import com.onecard.enums.RiskRuleEnum;
+import com.onecard.fact.CustomerFact;
+import java.util.List;
+function void print() {
+
+}
+global List list;
+
+query "testQuery"
+    customer:CustomerFact(age<30);
+end
+
+query "testQuery1"(int $age,String $gender)
+    customer:CustomerFact(age>$age)
+end
+
+
+
+rule ""
+    salience 10//优先级-数字越大执行优先级越高 默认为0 不设置执行顺序随机
+    no-loop true//用来控制已经执行过的规则条件再次满足时是否再次执行，默认是false，如果属性值是true，表示该规则只会被规则引擎检查一次，如果满足条件就执行规则的RHS部分
+    date-effective "2019-06-14"//日期比较小于等于 就执行-可接受的日期格式为“dd-MMM-yyyy”
+    date-expires "2019-06-14"//日期比较大于
+    dialect  "java"//方言
+    enabled true//是否可用
+    duration 3000 //作用是将在该属性指定的值之后在另外一个线程里触发。该属性对应的值为一个长整型，单位是毫秒
+    lock-on-active//规则执行一次
+    /**当在规则上使用ruleflow-group属性或agenda-group属性的时候，将lock-on-active属性的值设置为true，可以避免因某些Fact对象被修改而使已经执行过
+    　　　　的规则再次被激活执行。可以看出该属性与no-loop属性有相似之处，no-loop属性是为了避免Fact修改或调用了insert，retract，update之类导致
+    　　　　规则再次激活执行，这里lock-on-active属性也是这个作用，lock-on-active是no-loop的增强版。
+    　　　　作用：在使用ruleflow-group属性或agenda-group属性的时候，默认是false，设置为true，该规则只会执行一次*/
+
+    activation-group "dd"//分组
+    /**作用是将若干个规则划分成一个组，用一个字符串来给这个组命名，这样在执行的时候，
+        具有相同 activation-group 属性的规则中只要有一个会被执行，其它的规则都将不再执行。
+        也就是说，在一组具有相同 activation-group 属性的规则当中，只有一个规则会被执行，
+        其它规则都将不会被执行。当然对于具有相同 activation-group 属性的规则当中究竟哪
+        一个会先执行，则可以用类似 salience 之类属性来实现。*/
+    agenda-group  "ddd"//议程分组
+    /**规则的调用与执行是通过StatelessSession和ksession来实现的，一般的顺序是创建一个StatelessSession或ksession，
+    　　　　将各种经过编译的规则的package添加到session当中，接下来将规则当中可能用到的Global对象和Fact对象插入到Session当中，
+    　　　　最后调用fireAllRules方法来触发，执行规则，在没有调用最后一步分fireAllRules方法之前，
+    　　　　所有的规则及插入的Fact对象都存放在Agenda表的对象当中，这个Agenda表中的每个规则及其匹配相关的业务数据叫做Activation，
+    　　　　在调用fireAllRules方法后，这些Activation会依次执行，这些位于Agenda表中的Activation的执行顺序在没有设置相关用来
+    　　　　控制顺序的时(比如：salience属性)，它的执行顺序是随机不确定的。
+
+    　　　　agenda-group是用来在Agenda基础上，对现有的规则进行再次分组，具体的分组方法可以采用为规则添加agenda-group属性来实现，
+    　　　　agenda-group属性的值也是一个字符串，通过这个字符串，可以将规则分为若干个agenda group，默认情况下，引擎在调用这些
+    　　　　设置了agenda-group属性的规则的时候需要指定某个agenda group得到Focus(焦点)，这样位于该agenda group当中的规则才会触发执行，否则将不执行
+
+    　　　　实际应用中agenda-group可以和auto-focus属性一起使用*/
+        auto-focus true//焦点分组
+        ruleflow-group ""//规则流
+//    attributes---->属性
+    when
+        m:CustomerFact(name=="张三",age==20);
+//        LHS---->条件
+    then
+           /**在 Drools 当中，在 RHS 里面，提供了一些对当前 Working Memory 实现快速操作的宏
+           宏函数或对象， 比如 insert/insertLogical、 update 和 retract 就可以实现对当前 Working Memory
+           中的 Fact 对象进行新增、删除或者是修改*/
+           /**函数insert的作用与我们在Java类当中调用StatefulKnowledgeSession对象的insert方法的作用相同，
+           * 都是用来将一个 Fact 对象插入到当前的 Working Memory 当中
+           需注意：一旦调用 insert 宏函数，那么 Drools 会重新与所有的规则再重新匹配一次，
+           对于没有设置no-loop 属性为 true 的规则，如果条件满足，
+           不管其之前是否执行过都会再执行一次，这个特性不仅存在于 insert 宏函数上，
+           后面介绍的 update、retract 宏函数同样具有该特性，
+           所以在某些情况下因考虑不周调用 insert、update 或 retract 容易发生死循环*/
+           insert(new Object());
+           //insertLogical 作用与 insert 类似，它的作用也是将一个 Fact 对象插入到当前的 Working Memroy 当中
+           insertLogical(new Object());
+           /**update函数意义与其名称一样， 用来实现对当前Working Memory当中的 Fact进行更新，update 宏函数的作用与 StatefulSession 对象的 update 方法的作用基本相同，都是用来告诉当
+           前的 Working Memory 该 Fact 对象已经发生了变化。它的用法有两种形式，一种是直接更新一个 Fact 对象，另一种为通过指定 FactHandle 来更新与指定 FactHandle 对应的 Fact 对象
+           第一种 直接更新一个 Fact 对象：
+           第二种 可以支持创建一个新的 Fact 对象， 从而把 FactHandle对象指定的 Fact 对象替换掉，从而实现对象的全新更新：*/
+           update(new Object());//update(drools.getWorkingMemory().getFactHandleByIdentity($customer),customer);
+           retract(new Object());//删除功能
+           modify(m){
+                setAge(30),
+                setName("黄五")
+           }//modify是一个表达式块，它可以快速实现对 Fact 对象多个属性进行修改，修改完成后会自动更新到当前的 Working Memory 当中
+           getWorkingMemory();//获取当前WorkingMemory对象
+           halt();//在当前规则执行完成之后，不再执行其他未执行的规则
+           getRule();//获取当前规则对象
+//        RHS---->结果
+end
+
+//约束连接
+// && || ,
+
+//比较操作符
+// >、 >=、 <、 <=、 = =、 !=、 contains、 not contains、memberof、
+//not memberof、matches、not matches；
+//memberOf 是用来判断某个 Fact 对象的某个字段是否在一个集合（Collection/Array）当中
+//matches 是用来对某个 Fact 的字段与标准的 Java 正则表达式进行相似匹配，被比较的字符串可以是一个标准的 Java 正则表达式，但有一点需要注意，那就是正则表达式字符串当中不用考虑“\”的转义问题

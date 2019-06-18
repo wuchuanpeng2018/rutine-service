@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="rutine-base-service" />
+        <module name="rutine-collection-service" />
+        <module name="rutine-date-service" />
+        <module name="rutine-drools-service" />
+        <module name="rutine-optimization-service" />
+        <module name="rutine-tools-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="onecard-rule-engine-service" target="1.8" />
+      <module name="onecard-rule-engine-service-base" target="1.8" />
+      <module name="rutine-base-service" target="1.8" />
+      <module name="rutine-collection-service" target="1.8" />
+      <module name="rutine-date-service" target="1.8" />
+      <module name="rutine-drools-service" target="1.8" />
+      <module name="rutine-optimization-service" target="1.8" />
+      <module name="rutine-service" target="1.8" />
+      <module name="rutine-tools-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

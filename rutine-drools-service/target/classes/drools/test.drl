@@ -1,0 +1,277 @@
+package drools
+
+import com.onecard.fact.RiskRuleFact;
+import com.onecard.enums.RiskRuleEnum
+
+
+global java.util.Map<String,RiskRuleEnum> map
+
+dialect  "mvel"
+
+global String[] regions;
+
+function void print(String args) {
+    System.out.println(args);
+}
+
+rule "LHS"
+    when
+
+        m : RiskRuleFact(region memberOf  regions);
+//        m : RiskRuleFact(names contains region);
+//        m : RiskRuleFact(names matches "北京*");
+     then
+        print("memberOf="+m.getRegion());
+     end
+
+rule "age"
+    when
+        m : RiskRuleFact(age<=12 || age>=55, age:age)
+    then
+        System.out.println( "age   " + age);
+        m.getRefuseCode().put("age", RiskRuleEnum.RULE_AGE_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_AGE_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_AGE_TOUCH));
+end
+
+rule "region"
+    when
+        m: RiskRuleFact(region contains REGION_CODE, region:region)
+    then
+        System.out.println( "region   " + region);
+        m.getRefuseCode().put("region", RiskRuleEnum.RULE_REGION_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_REGION_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_REGION_TOUCH));
+end
+
+rule "industry"
+    when
+        m: RiskRuleFact(REGION_CODE contains industry, industry:industry)
+    then
+        System.out.println( "industry   " + industry);
+        m.getRefuseCode().put("industry", RiskRuleEnum.RULE_INDUSTRY_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_INDUSTRY_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_INDUSTRY_TOUCH));
+end
+
+rule "blackType"
+    when
+        m: RiskRuleFact(blackType == 1, blackType:blackType)
+    then
+        System.out.println( "blackType   " + blackType);
+        m.getRefuseCode().put("blackType", RiskRuleEnum.RULE_BLACKTYPE_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_BLACKTYPE_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_BLACKTYPE_TOUCH));
+end
+
+rule "badRecord"
+    when
+        m: RiskRuleFact(badRecord == 1, badRecord:badRecord)
+    then
+        System.out.println( "badRecord   " + badRecord);
+        m.getRefuseCode().put("badRecord", RiskRuleEnum.RULE_BADRECORD_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_BADRECORD_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_BADRECORD_TOUCH));
+end
+
+rule "creditRecord"
+    when
+        m: RiskRuleFact(badRecord == 0, creditRecord:creditRecord)
+    then
+        System.out.println( "creditRecord   " + creditRecord);
+        m.getRefuseCode().put("creditRecord", RiskRuleEnum.RULE_CREDITRECORD_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_CREDITRECORD_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_CREDITRECORD_TOUCH));
+end
+
+rule "creditHistory"
+    when
+        m: RiskRuleFact(creditHistory == 0, creditHistory:creditHistory)
+    then
+        System.out.println( "creditHistory   " + creditHistory);
+        m.getRefuseCode().put("creditHistory", RiskRuleEnum.RULE_CREDITHISTORY_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_CREDITHISTORY_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_CREDITHISTORY_TOUCH));
+end
+
+rule "digitalScore"
+    when
+        m: RiskRuleFact(digitalScore < 500, digitalScore:digitalScore)
+    then
+        System.out.println( "digitalScore   " + digitalScore);
+        m.getRefuseCode().put("digitalScore", RiskRuleEnum.RULE_DIGITALSCORE_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_DIGITALSCORE_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_DIGITALSCORE_TOUCH));
+end
+
+rule "taxArrears"
+    when
+        m: RiskRuleFact(taxArrears == 1, taxArrears:taxArrears)
+    then
+        System.out.println( "taxArrears   " + taxArrears);
+        m.getRefuseCode().put("taxArrears", RiskRuleEnum.RULE_TAXARREARS_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_TAXARREARS_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_TAXARREARS_TOUCH));
+end
+
+rule "involvedInAppeal"
+    when
+        m: RiskRuleFact(involvedInAppeal == 1, involvedInAppeal:involvedInAppeal)
+    then
+        System.out.println( "involvedInAppeal   " + involvedInAppeal);
+        m.getRefuseCode().put("involvedInAppeal", RiskRuleEnum.RULE_INVOLVEDINAPPEAL_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_INVOLVEDINAPPEAL_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_INVOLVEDINAPPEAL_TOUCH));
+end
+
+rule "enforcement"
+    when
+        m: RiskRuleFact(enforcement == 1, enforcement:enforcement)
+    then
+        System.out.println( "enforcement   " + enforcement);
+        m.getRefuseCode().put("enforcement", RiskRuleEnum.RULE_ENFORCEMENT_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_ENFORCEMENT_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_ENFORCEMENT_TOUCH));
+end
+
+rule "admSanction"
+    when
+        m: RiskRuleFact(admSanction == 1, admSanction:admSanction)
+    then
+        System.out.println( "admSanction   " + admSanction);
+        m.getRefuseCode().put("admSanction", RiskRuleEnum.RULE_ADMSANCTION_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_ADMSANCTION_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_ADMSANCTION_TOUCH));
+end
+
+rule "loanTypeCurrent"
+    when
+        m: RiskRuleFact(loanTypeCurrent == 2 || loanTypeCurrent == 3
+        || loanTypeCurrent == 4 || loanTypeCurrent == 5, loanTypeCurrent:loanTypeCurrent)
+    then
+        System.out.println( "loanTypeCurrent   " + loanTypeCurrent);
+        m.getRefuseCode().put("loanTypeCurrent", RiskRuleEnum.RULE_LOANTYPECURRENT_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_LOANTYPECURRENT_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_LOANTYPECURRENT_TOUCH));
+end
+
+rule "externalLoanType"
+    when
+        m: RiskRuleFact(externalLoanType == 2 || externalLoanType == 3
+        || externalLoanType == 4 || externalLoanType == 5, externalLoanType:externalLoanType)
+    then
+        System.out.println( "externalLoanType   " + externalLoanType);
+        m.getRefuseCode().put("externalLoanType", RiskRuleEnum.RULE_EXTERNALLOANTYPE_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_EXTERNALLOANTYPE_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_EXTERNALLOANTYPE_TOUCH));
+end
+
+rule "loanStatus"
+    when
+        m: RiskRuleFact(loanStatus == 1, loanStatus:loanStatus)
+    then
+        System.out.println( "loanStatus   " + loanStatus);
+        m.getRefuseCode().put("loanStatus", RiskRuleEnum.RULE_LOANSTATUS_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_LOANSTATUS_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_LOANSTATUS_TOUCH));
+end
+
+rule "badLendingSummaryNum"
+    when
+        m: RiskRuleFact(badLendingSummaryNum > 0, badLendingSummaryNum:badLendingSummaryNum)
+    then
+        System.out.println( "badLendingSummaryNum   " + badLendingSummaryNum);
+        m.getRefuseCode().put("badLendingSummaryNum", RiskRuleEnum.RULE_BADLENDINGSUMMARYNUM_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_BADLENDINGSUMMARYNUM_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_BADLENDINGSUMMARYNUM_TOUCH));
+end
+
+rule "assetDisposalSummaryNum"
+    when
+        m: RiskRuleFact(assetDisposalSummaryNum >0, assetDisposalSummaryNum:assetDisposalSummaryNum)
+    then
+        System.out.println( "assetDisposalSummaryNum   " + assetDisposalSummaryNum);
+        m.getRefuseCode().put("assetDisposalSummaryNum", RiskRuleEnum.RULE_ASSETDISPOSALSUMMARYNUM_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_ASSETDISPOSALSUMMARYNUM_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_ASSETDISPOSALSUMMARYNUM_TOUCH));
+end
+
+rule "guarantorCompSummaryNum"
+    when
+        m: RiskRuleFact(guarantorCompSummaryNum >0, guarantorCompSummaryNum:guarantorCompSummaryNum)
+    then
+        System.out.println( "guarantorCompSummaryNum   " + guarantorCompSummaryNum);
+        m.getRefuseCode().put("guarantorCompSummaryNum", RiskRuleEnum.RULE_GUARANTORCOMPSUMMARYNUM_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_GUARANTORCOMPSUMMARYNUM_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_GUARANTORCOMPSUMMARYNUM_TOUCH));
+end
+
+rule "overdueMoneyLoan"
+    when
+        m: RiskRuleFact(overdueMoneyLoan >0, overdueMoneyLoan:overdueMoneyLoan)
+    then
+        System.out.println( "overdueMoneyLoan   " + overdueMoneyLoan);
+        m.getRefuseCode().put("overdueMoneyLoan", RiskRuleEnum.RULE_OVERDUEMONEYLOAN_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_OVERDUEMONEYLOAN_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_OVERDUEMONEYLOAN_TOUCH));
+end
+
+rule "overdueMoneyCreditCard"
+    when
+        m: RiskRuleFact(overdueMoneyCreditCard >200, overdueMoneyCreditCard:overdueMoneyCreditCard)
+    then
+        System.out.println( "overdueMoneyCreditCard   " + overdueMoneyCreditCard);
+        m.getRefuseCode().put("overdueMoneyCreditCard", RiskRuleEnum.RULE_OVERDUEMONEYCREDITCARD_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_OVERDUEMONEYCREDITCARD_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_OVERDUEMONEYCREDITCARD_TOUCH));
+end
+
+rule "maxOverdueNumLoanNearlyDec"
+    when
+        m: RiskRuleFact(maxOverdueNumLoanNearlyDec >=2, maxOverdueNumLoanNearlyDec:maxOverdueNumLoanNearlyDec)
+    then
+        System.out.println( "maxOverdueNumLoanNearlyDec   " + maxOverdueNumLoanNearlyDec);
+        m.getRefuseCode().put("maxOverdueNumLoanNearlyDec", RiskRuleEnum.RULE_MAXOVERDUENUMLOANNEARLYDEC_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_MAXOVERDUENUMLOANNEARLYDEC_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_MAXOVERDUENUMLOANNEARLYDEC_TOUCH));
+end
+
+rule "maxOverdueNumCreditCardNearlyDec"
+    when
+        m: RiskRuleFact(maxOverdueNumCreditCardNearlyDec >=7, maxOverdueNumCreditCardNearlyDec:maxOverdueNumCreditCardNearlyDec)
+    then
+        System.out.println( "maxOverdueNumCreditCardNearlyDec   " + maxOverdueNumCreditCardNearlyDec);
+        m.getRefuseCode().put("maxOverdueNumCreditCardNearlyDec", RiskRuleEnum.RULE_MAXOVERDUENUMCREDITCARDNEARLYDEC_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_MAXOVERDUENUMCREDITCARDNEARLYDEC_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_MAXOVERDUENUMCREDITCARDNEARLYDEC_TOUCH));
+end
+
+rule "approvalSNumNearlyJan"
+    when
+        m: RiskRuleFact(approvalSNumNearlyJan >=9, approvalSNumNearlyJan:approvalSNumNearlyJan)
+    then
+        System.out.println( "approvalSNumNearlyJan   " + approvalSNumNearlyJan);
+        m.getRefuseCode().put("approvalSNumNearlyJan", RiskRuleEnum.RULE_APPROVALSNUMNEARLYJAN_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_APPROVALSNUMNEARLYJAN_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_APPROVALSNUMNEARLYJAN_TOUCH));
+end
+
+rule "oneSelfSNumNearlyJan"
+    when
+        m: RiskRuleFact(oneSelfSNumNearlyJan >=3, oneSelfSNumNearlyJan:oneSelfSNumNearlyJan)
+    then
+        System.out.println( "oneSelfSNumNearlyJan   " + oneSelfSNumNearlyJan);
+        m.getRefuseCode().put("oneSelfSNumNearlyJan", RiskRuleEnum.RULE_ONESELFSMUNNEARLYJAN_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_ONESELFSMUNNEARLYJAN_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_ONESELFSMUNNEARLYJAN_TOUCH));
+end
+
+rule "externalGuaranteeNumNearlySep"
+    when
+        m: RiskRuleFact(externalGuaranteeNumNearlySep >0, externalGuaranteeNumNearlySep:externalGuaranteeNumNearlySep)
+    then
+        System.out.println( "externalGuaranteeNumNearlySep   " + externalGuaranteeNumNearlySep);
+        m.getRefuseCode().put("externalGuaranteeNumNearlySep", RiskRuleEnum.RULE_EXTERNALGUARANTEENUMNEARLYSEP_TOUCH);
+        m.getRefuseBigCodes().add(RiskRuleEnum.RULE_EXTERNALGUARANTEENUMNEARLYSEP_TOUCH.getBigCode());
+        m.getRefuseStr().add(RiskRuleEnum.getRiskRuleEnumStr(RiskRuleEnum.RULE_EXTERNALGUARANTEENUMNEARLYSEP_TOUCH));
+end
