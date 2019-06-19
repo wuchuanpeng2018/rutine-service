@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../JCSprout/interview.iml" filepath="$PROJECT_DIR$/../JCSprout/interview.iml" />
       <module fileurl="file://$PROJECT_DIR$/../rule-engine-service/onecard-rule-engine-service.iml" filepath="$PROJECT_DIR$/../rule-engine-service/onecard-rule-engine-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rutine-annotations-service/rutine-annotations-service.iml" filepath="$PROJECT_DIR$/rutine-annotations-service/rutine-annotations-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rutine-base-service/rutine-base-service.iml" filepath="$PROJECT_DIR$/rutine-base-service/rutine-base-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rutine-collection-service/rutine-collection-service.iml" filepath="$PROJECT_DIR$/rutine-collection-service/rutine-collection-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rutine-date-service/rutine-date-service.iml" filepath="$PROJECT_DIR$/rutine-date-service/rutine-date-service.iml" />

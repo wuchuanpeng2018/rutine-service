@@ -18,6 +18,8 @@
         <module>rutine-date-service</module>
         <module>rutine-tools-service</module>
         <module>rutine-base-service</module>
+        <module>rutine-annotations-service</module>
+        <module>rutine-mybatis-service</module>
     </modules>
 
     <parent>
