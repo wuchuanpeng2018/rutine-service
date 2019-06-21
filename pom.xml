@@ -20,6 +20,7 @@
         <module>rutine-base-service</module>
         <module>rutine-annotations-service</module>
         <module>rutine-mybatis-service</module>
+        <module>rutine-current-service</module>
     </modules>
 
     <parent>

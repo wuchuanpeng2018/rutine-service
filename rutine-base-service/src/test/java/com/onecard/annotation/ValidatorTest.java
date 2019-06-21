@@ -1,4 +1,4 @@
-package com.onecard;
+package com.onecard.annotation;
 
 import com.onecard.annotation.StudentInfo;
 import com.onecard.annotation.ValidatorUtil;
