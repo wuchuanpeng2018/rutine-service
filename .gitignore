@@ -1,3 +1,5 @@
 /.idea/workspace.xml
 /rutine-base-service/target/*
 /rutine-current-service/*.iml
+/rutine-collection-service/target/*
+/rutine-base-service/target/*

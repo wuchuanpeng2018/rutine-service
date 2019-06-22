@@ -1,5 +1,6 @@
 package com.onecard.annotation;
 
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
