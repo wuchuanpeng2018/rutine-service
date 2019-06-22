@@ -6,18 +6,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="rutine-optimization-service" />
+        <module name="rutine-collection-service" />
+        <module name="rutine-drools-service" />
+        <module name="onecard-rutine-mybatis-service" />
+        <module name="rutine-date-service" />
+        <module name="onecard-rutine-annotations-service" />
+        <module name="rutine-tools-service" />
         <module name="rutine-annotations-service" />
         <module name="rutine-base-service" />
-        <module name="rutine-collection-service" />
-        <module name="rutine-date-service" />
-        <module name="rutine-drools-service" />
         <module name="rutine-mybatis-service" />
-        <module name="rutine-optimization-service" />
-        <module name="rutine-tools-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="interview" target="1.8" />
+      <module name="onecard-rutine-annotations-service" target="1.8" />
+      <module name="onecard-rutine-mybatis-service" target="1.8" />
       <module name="rutine-annotations-service" target="1.8" />
       <module name="rutine-base-service" target="1.8" />
       <module name="rutine-collection-service" target="1.8" />
@@ -28,5 +31,17 @@
       <module name="rutine-service" target="1.8" />
       <module name="rutine-tools-service" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="onecard-rutine-annotations-service" options="-parameters" />
+      <module name="onecard-rutine-mybatis-service" options="-parameters" />
+      <module name="rutine-base-service" options="-parameters" />
+      <module name="rutine-collection-service" options="-parameters" />
+      <module name="rutine-date-service" options="-parameters" />
+      <module name="rutine-drools-service" options="-parameters" />
+      <module name="rutine-optimization-service" options="-parameters" />
+      <module name="rutine-tools-service" options="-parameters" />
+    </option>
   </component>
 </project>
