@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/rutine-annotations-service/rutine-annotations-service.iml" filepath="$PROJECT_DIR$/rutine-annotations-service/rutine-annotations-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rutine-base-service/rutine-base-service.iml" filepath="$PROJECT_DIR$/rutine-base-service/rutine-base-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rutine-collection-service/rutine-collection-service.iml" filepath="$PROJECT_DIR$/rutine-collection-service/rutine-collection-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rutine-current-service/rutine-current-service.iml" filepath="$PROJECT_DIR$/rutine-current-service/rutine-current-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rutine-date-service/rutine-date-service.iml" filepath="$PROJECT_DIR$/rutine-date-service/rutine-date-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rutine-drools-service/rutine-drools-service.iml" filepath="$PROJECT_DIR$/rutine-drools-service/rutine-drools-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rutine-mybatis-service/rutine-mybatis-service.iml" filepath="$PROJECT_DIR$/rutine-mybatis-service/rutine-mybatis-service.iml" />
