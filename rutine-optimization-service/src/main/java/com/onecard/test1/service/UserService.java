@@ -1,6 +1,6 @@
-package com.onecard.service;
+package com.onecard.test1.service;
 
-import com.onecard.model.User;
+import com.onecard.test1.model.User;
 
 /**
  * @description:

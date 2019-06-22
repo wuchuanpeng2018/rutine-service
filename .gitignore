@@ -3,3 +3,4 @@
 /rutine-current-service/*.iml
 /rutine-collection-service/target/*
 /rutine-base-service/target/*
+/rutine-optimization-service/target/*

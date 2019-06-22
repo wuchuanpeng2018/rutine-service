@@ -1,4 +1,4 @@
-package com.onecard.dto;
+package com.onecard.test1.dto;
 
 import lombok.Data;
 

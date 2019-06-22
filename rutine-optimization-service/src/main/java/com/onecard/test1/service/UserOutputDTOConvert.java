@@ -1,8 +1,8 @@
-package com.onecard.service;
+package com.onecard.test1.service;
 
-import com.onecard.dto.UserInputDTO;
-import com.onecard.dto.UserOutputDTO;
-import com.onecard.model.User;
+import com.onecard.test1.dto.UserInputDTO;
+import com.onecard.test1.dto.UserOutputDTO;
+import com.onecard.test1.model.User;
 import org.springframework.beans.BeanUtils;
 
 /**

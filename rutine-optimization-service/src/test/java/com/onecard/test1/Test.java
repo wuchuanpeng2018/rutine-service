@@ -1,9 +1,9 @@
-package com.onecard;
+package com.onecard.test1;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.onecard.model.User;
-import com.onecard.model.UserLombak;
+import com.onecard.test1.model.User;
+import com.onecard.test1.model.UserLombak;
 
 import java.util.List;
 import java.util.Map;

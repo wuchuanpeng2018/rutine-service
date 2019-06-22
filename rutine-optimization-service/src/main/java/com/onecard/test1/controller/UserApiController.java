@@ -1,11 +1,11 @@
-package com.onecard.controller;
+package com.onecard.test1.controller;
 
-import com.onecard.dto.UserInputDTO;
-import com.onecard.dto.UserOutputDTO;
-import com.onecard.model.User;
-import com.onecard.service.UserInputDTOConvert;
-import com.onecard.service.UserOutputDTOConvert;
-import com.onecard.service.UserService;
+import com.onecard.test1.dto.UserInputDTO;
+import com.onecard.test1.dto.UserOutputDTO;
+import com.onecard.test1.model.User;
+import com.onecard.test1.service.UserInputDTOConvert;
+import com.onecard.test1.service.UserOutputDTOConvert;
+import com.onecard.test1.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

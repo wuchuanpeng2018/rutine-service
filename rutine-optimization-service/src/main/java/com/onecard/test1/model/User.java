@@ -1,4 +1,4 @@
-package com.onecard.model;
+package com.onecard.test1.model;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

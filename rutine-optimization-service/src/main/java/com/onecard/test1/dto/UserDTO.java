@@ -1,7 +1,7 @@
-package com.onecard.dto;
+package com.onecard.test1.dto;
 
-import com.onecard.model.User;
-import com.onecard.service.Converter;
+import com.onecard.test1.model.User;
+import com.onecard.test1.service.Converter;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
